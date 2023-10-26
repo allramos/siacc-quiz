@@ -25,6 +25,17 @@ let QuestaoService = class QuestaoService {
     findOne(id) {
         return this.prisma.questao.findUnique({ where: { id } });
     }
+    async findOneRandom() {
+        const questaosCount = await this.prisma.questao.count();
+        const skip = Math.floor(Math.random() * questaosCount);
+        return await this.prisma.questao.findMany({
+            take: 1,
+            skip: skip,
+            orderBy: {
+                enunciado: 'desc',
+            },
+        });
+    }
     update(id, updateQuestaoDto) {
         return this.prisma.questao.update({
             where: { id },

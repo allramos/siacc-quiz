@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { PerguntaService } from '../services/pergunta.service';
+import { QuestaoService } from '../services/questao.service';
 
 @Component({
   selector: 'app-inicio',
@@ -8,13 +8,15 @@ import { PerguntaService } from '../services/pergunta.service';
 })
 export class InicioComponent implements OnInit {
 
-  pergunta!: any
+  questao!: any
 
-  constructor(private service: PerguntaService) { }
+  constructor(private service: QuestaoService) { }
 
   ngOnInit(): void {
-    this.service.getPergunta().subscribe((data: any) => {
-      this.pergunta = data.enun
+    this.service.getQuestao().subscribe((data: any) => {
+      // console.log(data);
+      
+      this.questao = data[0].enunciado
     })
   }
 }

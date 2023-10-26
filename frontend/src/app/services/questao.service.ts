@@ -4,14 +4,14 @@ import { Injectable } from '@angular/core';
 @Injectable({
   providedIn: 'root'
 })
-export class PerguntaService {
+export class QuestaoService {
 
   url = 'http://localhost:3000'
 
   constructor(private http: HttpClient) { }
 
-  getPergunta() {
-    return this.http.get(this.url + '/pergunta')
+  getQuestao() {
+    return this.http.get(this.url + '/questao/random')
   }
-  
+
 }

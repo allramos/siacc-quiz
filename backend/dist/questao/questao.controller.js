@@ -27,8 +27,11 @@ let QuestaoController = class QuestaoController {
     findAll() {
         return this.questaoService.findAll();
     }
-    findOne(id) {
-        return this.questaoService.findOne(+id);
+    async findOneRandom() {
+        return await this.questaoService.findOneRandom();
+    }
+    async findOne(id) {
+        return await this.questaoService.findOne(+id);
     }
     update(id, updateQuestaoDto) {
         return this.questaoService.update(+id, updateQuestaoDto);
@@ -52,11 +55,17 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], QuestaoController.prototype, "findAll", null);
 __decorate([
+    (0, common_1.Get)('random'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", Promise)
+], QuestaoController.prototype, "findOneRandom", null);
+__decorate([
     (0, common_1.Get)(':id'),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
-    __metadata("design:returntype", void 0)
+    __metadata("design:returntype", Promise)
 ], QuestaoController.prototype, "findOne", null);
 __decorate([
     (0, common_1.Patch)(':id'),

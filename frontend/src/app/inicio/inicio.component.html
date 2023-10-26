@@ -1,6 +1,6 @@
 <div class="container">
     <div class="score">Pontuação: 0</div>
-    <div class="question">{{pergunta}}</div>
+    <div class="question" *ngIf="questao">{{questao}}</div>
 </div>
 <div class="buttons">
     <button class="button-correct">Certo</button>

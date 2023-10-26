@@ -5,7 +5,7 @@ import { UpdateQuestaoDto } from './dto/update-questao.dto';
 
 @Controller('questao')
 export class QuestaoController {
-  constructor(private readonly questaoService: QuestaoService) {}
+  constructor(private readonly questaoService: QuestaoService) { }
 
   @Post()
   create(@Body() createQuestaoDto: CreateQuestaoDto) {
@@ -17,9 +17,14 @@ export class QuestaoController {
     return this.questaoService.findAll();
   }
 
+  @Get('random')
+  async findOneRandom() {
+    return await this.questaoService.findOneRandom();
+  }
+
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.questaoService.findOne(+id);
+  async findOne(@Param('id') id: string) {
+    return await this.questaoService.findOne(+id);
   }
 
   @Patch(':id')

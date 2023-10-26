@@ -31,32 +31,32 @@ model Questao {
   enunciado   String
   gabarito    Boolean
   assunto     Assunto?   @relation(fields: [assuntoId], references: [id])
-  assuntoId   Int?       @default(autoincrement()) @map("assunto_id")
+  assuntoId   Int?       @map("assunto_id")
   dificuldade Int?       @default(0)
   autor       Professor? @relation(fields: [autorId], references: [id])
-  autorId     Int?       @default(autoincrement()) @map("autor_id")
+  autorId     Int?       @map("autor_id")
 
   @@map("questao")
 }
 
 model Assunto {
-  id      Int       @id @default(autoincrement())
-  nome    String
-  questao Questao[]
-  testes  Teste[]
+  id       Int       @id @default(autoincrement())
+  nome     String
+  questoes Questao[]
+  testes   Teste[]
 
   @@map("assunto")
 }
 
 model Teste {
   id                 Int      @id @default(autoincrement())
-  inicio             DateTime
+  inicio             DateTime @default(now())
   fim                DateTime
   quantidadeQuestoes Int?     @map("qtd_questoes")
-  aluno              Aluno    @relation(fields: [alunoId], references: [id])
-  alunoId            Int      @default(autoincrement()) @map("aluno_id")
-  assunto            Assunto  @relation(fields: [assuntoId], references: [id])
-  assuntoId          Int      @default(autoincrement()) @map("assunto_id")
+  aluno              Aluno?   @relation(fields: [alunoId], references: [id])
+  alunoId            Int?     @map("aluno_id")
+  assunto            Assunto? @relation(fields: [assuntoId], references: [id])
+  assuntoId          Int?     @map("assunto_id")
   score              Int?
 
   @@map("teste")

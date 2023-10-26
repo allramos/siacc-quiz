@@ -7,34 +7,42 @@ export declare class QuestaoController {
     create(createQuestaoDto: CreateQuestaoDto): string;
     findAll(): import(".prisma/client").Prisma.PrismaPromise<{
         id: number;
-        enun: string;
+        enunciado: string;
         gabarito: boolean;
         assuntoId: number;
-        dificult: string;
+        dificuldade: number;
         autorId: number;
     }[]>;
-    findOne(id: string): import(".prisma/client").Prisma.Prisma__QuestaoClient<{
+    findOneRandom(): Promise<{
         id: number;
-        enun: string;
+        enunciado: string;
         gabarito: boolean;
         assuntoId: number;
-        dificult: string;
+        dificuldade: number;
         autorId: number;
-    }, null, import("@prisma/client/runtime/library").DefaultArgs>;
+    }[]>;
+    findOne(id: string): Promise<{
+        id: number;
+        enunciado: string;
+        gabarito: boolean;
+        assuntoId: number;
+        dificuldade: number;
+        autorId: number;
+    }>;
     update(id: string, updateQuestaoDto: UpdateQuestaoDto): import(".prisma/client").Prisma.Prisma__QuestaoClient<{
         id: number;
-        enun: string;
+        enunciado: string;
         gabarito: boolean;
         assuntoId: number;
-        dificult: string;
+        dificuldade: number;
         autorId: number;
     }, never, import("@prisma/client/runtime/library").DefaultArgs>;
     remove(id: string): import(".prisma/client").Prisma.Prisma__QuestaoClient<{
         id: number;
-        enun: string;
+        enunciado: string;
         gabarito: boolean;
         assuntoId: number;
-        dificult: string;
+        dificuldade: number;
         autorId: number;
     }, never, import("@prisma/client/runtime/library").DefaultArgs>;
 }
