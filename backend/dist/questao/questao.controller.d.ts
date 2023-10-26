@@ -1,8 +1,10 @@
 import { QuestaoService } from './questao.service';
 import { CreateQuestaoDto } from './dto/create-questao.dto';
 import { UpdateQuestaoDto } from './dto/update-questao.dto';
+import { Server } from 'socket.io';
 export declare class QuestaoController {
     private readonly questaoService;
+    server: Server<import("socket.io/dist/typed-events").DefaultEventsMap, import("socket.io/dist/typed-events").DefaultEventsMap, import("socket.io/dist/typed-events").DefaultEventsMap, any>;
     constructor(questaoService: QuestaoService);
     create(createQuestaoDto: CreateQuestaoDto): string;
     findAll(): import(".prisma/client").Prisma.PrismaPromise<{
@@ -21,6 +23,12 @@ export declare class QuestaoController {
         dificuldade: number;
         autorId: number;
     }[]>;
+    replyTrue(): {
+        success: boolean;
+    };
+    replyFalse(): {
+        success: boolean;
+    };
     findOne(id: string): Promise<{
         id: number;
         enunciado: string;

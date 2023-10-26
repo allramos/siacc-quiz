@@ -2,10 +2,27 @@ import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/commo
 import { QuestaoService } from './questao.service';
 import { CreateQuestaoDto } from './dto/create-questao.dto';
 import { UpdateQuestaoDto } from './dto/update-questao.dto';
+import { WebSocketServer } from '@nestjs/websockets';
+import { Server } from 'socket.io';
 
 @Controller('questao')
 export class QuestaoController {
-  constructor(private readonly questaoService: QuestaoService) { }
+
+  @WebSocketServer() 
+  server = new Server();
+  
+
+  constructor(private readonly questaoService: QuestaoService) {
+    this.server.listen(3003, {
+      cors: {
+        origin: '*',
+        methods: ['GET', 'POST', 'PATCH'],
+        // transports: ['websocket', 'polling'],
+        credentials: false,
+      },
+      allowEIO3: true,
+    })
+   }
 
   @Post()
   create(@Body() createQuestaoDto: CreateQuestaoDto) {
@@ -20,6 +37,20 @@ export class QuestaoController {
   @Get('random')
   async findOneRandom() {
     return await this.questaoService.findOneRandom();
+  }
+
+  @Get('true')
+  replyTrue() {
+    const message = 'certo';
+    this.server.emit('message', message); // Emita a mensagem via socket com o nome 'message'
+    return { success: true };
+  }
+
+  @Get('false')
+  replyFalse() {
+    const message = 'errado';
+    this.server.emit('message', message); // Emita a mensagem via socket com o nome 'message'
+    return { success: true };
   }
 
   @Get(':id')

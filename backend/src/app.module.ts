@@ -7,10 +7,12 @@ import { AlunoModule } from './aluno/aluno.module';
 import { QuestaoModule } from './questao/questao.module';
 import { AssuntoModule } from './assunto/assunto.module';
 import { TesteModule } from './teste/teste.module';
+import { BroadcastGateway } from './broadcast/broadcast.gateway';
 
 @Module({
   imports: [PrismaModule, ProfessorModule, AlunoModule, QuestaoModule, AssuntoModule, TesteModule],
   controllers: [AppController],
+  // providers: [AppService, BroadcastGateway],
   providers: [AppService],
 })
 export class AppModule {}

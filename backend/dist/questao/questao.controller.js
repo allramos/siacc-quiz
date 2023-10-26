@@ -17,9 +17,20 @@ const common_1 = require("@nestjs/common");
 const questao_service_1 = require("./questao.service");
 const create_questao_dto_1 = require("./dto/create-questao.dto");
 const update_questao_dto_1 = require("./dto/update-questao.dto");
+const websockets_1 = require("@nestjs/websockets");
+const socket_io_1 = require("socket.io");
 let QuestaoController = class QuestaoController {
     constructor(questaoService) {
         this.questaoService = questaoService;
+        this.server = new socket_io_1.Server();
+        this.server.listen(3003, {
+            cors: {
+                origin: '*',
+                methods: ['GET', 'POST', 'PATCH'],
+                credentials: false,
+            },
+            allowEIO3: true,
+        });
     }
     create(createQuestaoDto) {
         return this.questaoService.create(createQuestaoDto);
@@ -29,6 +40,16 @@ let QuestaoController = class QuestaoController {
     }
     async findOneRandom() {
         return await this.questaoService.findOneRandom();
+    }
+    replyTrue() {
+        const message = 'certo';
+        this.server.emit('message', message);
+        return { success: true };
+    }
+    replyFalse() {
+        const message = 'errado';
+        this.server.emit('message', message);
+        return { success: true };
     }
     async findOne(id) {
         return await this.questaoService.findOne(+id);
@@ -41,6 +62,10 @@ let QuestaoController = class QuestaoController {
     }
 };
 exports.QuestaoController = QuestaoController;
+__decorate([
+    (0, websockets_1.WebSocketServer)(),
+    __metadata("design:type", Object)
+], QuestaoController.prototype, "server", void 0);
 __decorate([
     (0, common_1.Post)(),
     __param(0, (0, common_1.Body)()),
@@ -60,6 +85,18 @@ __decorate([
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)
 ], QuestaoController.prototype, "findOneRandom", null);
+__decorate([
+    (0, common_1.Get)('true'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", void 0)
+], QuestaoController.prototype, "replyTrue", null);
+__decorate([
+    (0, common_1.Get)('false'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", void 0)
+], QuestaoController.prototype, "replyFalse", null);
 __decorate([
     (0, common_1.Get)(':id'),
     __param(0, (0, common_1.Param)('id')),

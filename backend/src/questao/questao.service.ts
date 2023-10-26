@@ -4,6 +4,7 @@ import { UpdateQuestaoDto } from './dto/update-questao.dto';
 import { PrismaModule } from 'src/prisma/prisma.module';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { log } from 'console';
+import { Observable } from 'rxjs';
 
 @Injectable()
 export class QuestaoService {
