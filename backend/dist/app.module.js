@@ -14,14 +14,14 @@ const prisma_module_1 = require("./prisma/prisma.module");
 const professor_module_1 = require("./professor/professor.module");
 const aluno_module_1 = require("./aluno/aluno.module");
 const questao_module_1 = require("./questao/questao.module");
-const assunt_module_1 = require("./assunt/assunt.module");
+const assunto_module_1 = require("./assunto/assunto.module");
 const teste_module_1 = require("./teste/teste.module");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
 exports.AppModule = AppModule = __decorate([
     (0, common_1.Module)({
-        imports: [prisma_module_1.PrismaModule, professor_module_1.ProfessorModule, aluno_module_1.AlunoModule, questao_module_1.QuestaoModule, assunt_module_1.AssuntModule, teste_module_1.TesteModule],
+        imports: [prisma_module_1.PrismaModule, professor_module_1.ProfessorModule, aluno_module_1.AlunoModule, questao_module_1.QuestaoModule, assunto_module_1.AssuntoModule, teste_module_1.TesteModule],
         controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService],
     })
