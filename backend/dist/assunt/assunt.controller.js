@@ -11,6 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
+var _a;
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AssuntController = void 0;
 const common_1 = require("@nestjs/common");
@@ -75,6 +76,6 @@ __decorate([
 ], AssuntController.prototype, "remove", null);
 exports.AssuntController = AssuntController = __decorate([
     (0, common_1.Controller)('assunt'),
-    __metadata("design:paramtypes", [assunt_service_1.AssuntService])
+    __metadata("design:paramtypes", [typeof (_a = typeof assunt_service_1.AssuntService !== "undefined" && assunt_service_1.AssuntService) === "function" ? _a : Object])
 ], AssuntController);
 //# sourceMappingURL=assunt.controller.js.map

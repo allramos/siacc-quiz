@@ -9,10 +9,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.AssuntService = void 0;
+exports.AssuntoService = void 0;
 const common_1 = require("@nestjs/common");
 const prisma_service_1 = require("../prisma/prisma.service");
-let AssuntService = class AssuntService {
+let AssuntoService = class AssuntoService {
     constructor(prisma) {
         this.prisma = prisma;
     }
@@ -20,24 +20,24 @@ let AssuntService = class AssuntService {
         return 'This action adds a new assunt';
     }
     findAll() {
-        return this.prisma.assunt.findMany();
+        return this.prisma.assunto.findMany();
     }
     findOne(id) {
-        return this.prisma.assunt.findUnique({ where: { id } });
+        return this.prisma.assunto.findUnique({ where: { id } });
     }
     update(id, updateAssuntDto) {
-        return this.prisma.assunt.update({
+        return this.prisma.assunto.update({
             where: { id },
             data: updateAssuntDto,
         });
     }
     remove(id) {
-        return this.prisma.assunt.delete({ where: { id } });
+        return this.prisma.assunto.delete({ where: { id } });
     }
 };
-exports.AssuntService = AssuntService;
-exports.AssuntService = AssuntService = __decorate([
+exports.AssuntoService = AssuntoService;
+exports.AssuntoService = AssuntoService = __decorate([
     (0, common_1.Injectable)(),
     __metadata("design:paramtypes", [prisma_service_1.PrismaService])
-], AssuntService);
+], AssuntoService);
 //# sourceMappingURL=assunt.service.js.map

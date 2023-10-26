@@ -1,7 +1,7 @@
 import { CreateAssuntDto } from './dto/create-assunt.dto';
 import { UpdateAssuntDto } from './dto/update-assunt.dto';
 import { PrismaService } from 'src/prisma/prisma.service';
-export declare class AssuntService {
+export declare class AssuntoService {
     private prisma;
     constructor(prisma: PrismaService);
     create(createAssuntDto: CreateAssuntDto): string;
@@ -9,15 +9,15 @@ export declare class AssuntService {
         id: number;
         nome: string;
     }[]>;
-    findOne(id: number): import(".prisma/client").Prisma.Prisma__AssuntClient<{
+    findOne(id: number): import(".prisma/client").Prisma.Prisma__AssuntoClient<{
         id: number;
         nome: string;
     }, null, import("@prisma/client/runtime/library").DefaultArgs>;
-    update(id: number, updateAssuntDto: UpdateAssuntDto): import(".prisma/client").Prisma.Prisma__AssuntClient<{
+    update(id: number, updateAssuntDto: UpdateAssuntDto): import(".prisma/client").Prisma.Prisma__AssuntoClient<{
         id: number;
         nome: string;
     }, never, import("@prisma/client/runtime/library").DefaultArgs>;
-    remove(id: number): import(".prisma/client").Prisma.Prisma__AssuntClient<{
+    remove(id: number): import(".prisma/client").Prisma.Prisma__AssuntoClient<{
         id: number;
         nome: string;
     }, never, import("@prisma/client/runtime/library").DefaultArgs>;
