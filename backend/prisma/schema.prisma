@@ -1,0 +1,65 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Professor {
+  id    Int   @id  @default(autoincrement())
+  nome  String 
+  questoes Questao[]
+
+  @@map("professor")
+}
+
+model Aluno {
+  id    Int  @id   @default(autoincrement())
+  nome  String 
+  testes Teste[]
+
+  @@map("aluno")
+}
+
+
+model Questao {
+  id    Int  @id   @default(autoincrement())
+  enun  String  
+  gabarito Boolean
+  assunto Assunt @relation(fields: [assuntoId], references: [id])
+  assuntoId Int  @default(autoincrement()) @map("assunto_id")
+  dificult String 
+  autor     Professor      @relation(fields: [autorId], references: [id])
+  autorId   Int  @default(autoincrement()) @map("autor_id")
+
+  @@map("questao")
+}
+
+model Assunt {
+  id    Int  @id   @default(autoincrement())
+  nome String 
+  questao Questao[]
+  testes Teste[]
+
+  @@map("assunto")
+
+}
+
+model Teste {
+  id    Int  @id   @default(autoincrement())
+  inicio DateTime
+  fim DateTime
+  quantidadeQuestoes Int? @map("qtd_questoes")
+  aluno     Aluno      @relation(fields: [alunoId], references: [id])
+  alunoId   Int @default(autoincrement())  @map("aluno_id")
+  assunto Assunt   @relation(fields: [assuntoId], references: [id])
+  assuntoId Int @default(autoincrement())  @map("assunto_id")
+  score Int?
+
+  @@map("teste")
+}
