@@ -27,14 +27,14 @@ model Aluno {
 }
 
 model Questao {
-  id        Int       @id @default(autoincrement())
-  enun      String
-  gabarito  Boolean
-  assunto   Assunto?    @relation(fields: [assuntoId], references: [id])
-  assuntoId Int?       @default(autoincrement()) @map("assunto_id")
-  dificult  String
-  autor     Professor? @relation(fields: [autorId], references: [id])
-  autorId   Int?       @default(autoincrement()) @map("autor_id")
+  id          Int        @id @default(autoincrement())
+  enunciado   String
+  gabarito    Boolean
+  assunto     Assunto?   @relation(fields: [assuntoId], references: [id])
+  assuntoId   Int?       @default(autoincrement()) @map("assunto_id")
+  dificuldade Int?       @default(0)
+  autor       Professor? @relation(fields: [autorId], references: [id])
+  autorId     Int?       @default(autoincrement()) @map("autor_id")
 
   @@map("questao")
 }
@@ -55,7 +55,7 @@ model Teste {
   quantidadeQuestoes Int?     @map("qtd_questoes")
   aluno              Aluno    @relation(fields: [alunoId], references: [id])
   alunoId            Int      @default(autoincrement()) @map("aluno_id")
-  assunto            Assunto   @relation(fields: [assuntoId], references: [id])
+  assunto            Assunto  @relation(fields: [assuntoId], references: [id])
   assuntoId          Int      @default(autoincrement()) @map("assunto_id")
   score              Int?
 
