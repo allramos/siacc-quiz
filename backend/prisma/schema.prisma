@@ -30,11 +30,11 @@ model Questao {
   id        Int       @id @default(autoincrement())
   enun      String
   gabarito  Boolean
-  assunto   Assunto    @relation(fields: [assuntoId], references: [id])
-  assuntoId Int       @default(autoincrement()) @map("assunto_id")
+  assunto   Assunto?    @relation(fields: [assuntoId], references: [id])
+  assuntoId Int?       @default(autoincrement()) @map("assunto_id")
   dificult  String
-  autor     Professor @relation(fields: [autorId], references: [id])
-  autorId   Int       @default(autoincrement()) @map("autor_id")
+  autor     Professor? @relation(fields: [autorId], references: [id])
+  autorId   Int?       @default(autoincrement()) @map("autor_id")
 
   @@map("questao")
 }
