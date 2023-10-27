@@ -131,3 +131,9 @@ dist
 .pnp.*
 
 .history
+esp32/libraries/SocketIoClient/library.json
+esp32/libraries/SocketIoClient/library.properties
+esp32/libraries/SocketIoClient/README.md
+esp32/libraries/SocketIoClient/SocketIoClient.cpp
+esp32/libraries/SocketIoClient/SocketIoClient.h
+esp32/libraries/SocketIoClient/examples/BasicExample/BasicExample.ino
