@@ -5,16 +5,28 @@ body {
     height: 100%;
 }
 
-body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
-    background-color: #f0f0f0;
-}
+// body {
+//     display: flex;
+//     justify-content: center;
+//     align-items: center;
+//     height: 100vh;
+//     margin: 0;
+//     background-color: #f0f0f0;
+// }
 
 body {
     margin: 0;
     font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+// Snackbar
+$txt-sucesso: #215132;
+.sucesso {
+    --mdc-snackbar-container-color: #d1e7dd !important;
+    --mat-mdc-snack-bar-button-color: white;
+    --mdc-snackbar-supporting-text-color: $txt-sucesso !important;
+    
+    .mat-mdc-button .mdc-button__label{
+        color: $txt-sucesso
+    }
 }

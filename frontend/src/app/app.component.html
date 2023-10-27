@@ -1,1 +1,13 @@
-<router-outlet></router-outlet>
+<mat-sidenav-container class="example-container">
+
+    <mat-sidenav-content class="question">
+        <router-outlet></router-outlet>
+    </mat-sidenav-content>
+    
+    
+    <mat-sidenav mode="side" opened position="end" class="rank">
+        <app-ranking></app-ranking>
+        <app-aluno></app-aluno>
+    </mat-sidenav>
+
+</mat-sidenav-container>

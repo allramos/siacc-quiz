@@ -26,15 +26,15 @@ export class QuestaoService {
   async findOneRandom() {
 
     const questaosCount = await this.prisma.questao.count();
-        const skip = Math.floor(Math.random() * questaosCount);
-        
-        return await this.prisma.questao.findMany({
-            take: 1,
-            skip: skip,
-            orderBy: {
-                enunciado: 'desc',
-            },
-        });
+    const skip = Math.floor(Math.random() * questaosCount);
+
+    return await this.prisma.questao.findMany({
+      take: 1,
+      skip: skip,
+      orderBy: {
+        enunciado: 'desc',
+      },
+    });
   }
 
   update(id: number, updateQuestaoDto: UpdateQuestaoDto) {

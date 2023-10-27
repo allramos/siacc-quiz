@@ -41,14 +41,14 @@ export class QuestaoController {
 
   @Get('true')
   replyTrue() {
-    const message = 'certo';
+    const message = true;
     this.server.emit('message', message); // Emita a mensagem via socket com o nome 'message'
     return { success: true };
   }
 
   @Get('false')
   replyFalse() {
-    const message = 'errado';
+    const message = false
     this.server.emit('message', message); // Emita a mensagem via socket com o nome 'message'
     return { success: true };
   }

@@ -17,10 +17,15 @@ let AlunoService = class AlunoService {
         this.prisma = prisma;
     }
     create(createAlunoDto) {
-        return 'This action adds a new aluno';
+        return this.prisma.aluno.create({ data: createAlunoDto });
     }
     findAll() {
-        return this.prisma.aluno.findMany();
+        return this.prisma.aluno.findMany({
+            take: 10,
+            orderBy: {
+                pontuacao: 'desc'
+            },
+        });
     }
     findOne(id) {
         return this.prisma.aluno.findUnique({ where: { id } });

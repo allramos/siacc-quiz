@@ -7,11 +7,20 @@ import { Injectable } from '@angular/core';
 export class QuestaoService {
 
   url = 'http://localhost:3000'
+  pontuacao = 0;
 
   constructor(private http: HttpClient) { }
 
   getQuestao() {
     return this.http.get(this.url + '/questao/random')
+  }
+  
+  getRanking(){
+    return this.http.get(this.url + '/aluno')
+  }
+
+  salvarAluno(data: any){
+    return this.http.post(this.url + '/aluno', data)
   }
 
 }

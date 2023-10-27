@@ -12,7 +12,7 @@ export declare class TesteService {
         quantidadeQuestoes: number;
         alunoId: number;
         assuntoId: number;
-        score: number;
+        pontuacao: number;
     }[]>;
     findOne(id: number): import(".prisma/client").Prisma.Prisma__TesteClient<{
         id: number;
@@ -21,7 +21,7 @@ export declare class TesteService {
         quantidadeQuestoes: number;
         alunoId: number;
         assuntoId: number;
-        score: number;
+        pontuacao: number;
     }, null, import("@prisma/client/runtime/library").DefaultArgs>;
     update(id: number, updateTesteDto: UpdateTesteDto): import(".prisma/client").Prisma.Prisma__TesteClient<{
         id: number;
@@ -30,7 +30,7 @@ export declare class TesteService {
         quantidadeQuestoes: number;
         alunoId: number;
         assuntoId: number;
-        score: number;
+        pontuacao: number;
     }, never, import("@prisma/client/runtime/library").DefaultArgs>;
     remove(id: number): import(".prisma/client").Prisma.Prisma__TesteClient<{
         id: number;
@@ -39,6 +39,6 @@ export declare class TesteService {
         quantidadeQuestoes: number;
         alunoId: number;
         assuntoId: number;
-        score: number;
+        pontuacao: number;
     }, never, import("@prisma/client/runtime/library").DefaultArgs>;
 }

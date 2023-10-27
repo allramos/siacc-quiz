@@ -42,12 +42,12 @@ let QuestaoController = class QuestaoController {
         return await this.questaoService.findOneRandom();
     }
     replyTrue() {
-        const message = 'certo';
+        const message = true;
         this.server.emit('message', message);
         return { success: true };
     }
     replyFalse() {
-        const message = 'errado';
+        const message = false;
         this.server.emit('message', message);
         return { success: true };
     }

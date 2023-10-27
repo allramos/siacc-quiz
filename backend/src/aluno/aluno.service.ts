@@ -9,11 +9,18 @@ export class AlunoService {
   constructor(private prisma: PrismaService){}
   
   create(createAlunoDto: CreateAlunoDto) {
-    return 'This action adds a new aluno';
+    return this.prisma.aluno.create({data: createAlunoDto});
   }
 
   findAll() {
-    return this.prisma.aluno.findMany();
+    return this.prisma.aluno.findMany({
+     take: 10,
+
+      orderBy: {
+        pontuacao: 'desc'
+      },
+      
+    });
   }
 
   findOne(id: number) {
