@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { io } from "socket.io-client";
 import { QuestaoService } from '../services/questao.service';
-
 @Component({
   selector: 'app-inicio',
   templateUrl: './inicio.component.html',
@@ -53,10 +52,12 @@ export class InicioComponent implements OnInit {
               return
             }
           }
-          
+
         } else {
           console.log('errou');
           this.errouAlguma = true;
+          let audio: HTMLAudioElement = new Audio('/assets/erro.mp3');
+          audio.play();
         }
       }
 
@@ -101,6 +102,10 @@ export class InicioComponent implements OnInit {
   acertou() {
     console.log('acertou');
     this.service.pontuacao++;
+
+    let audio: HTMLAudioElement = new Audio('/assets/sucesso.mp3');
+    audio.play();
+
   }
 
   venceu() {
