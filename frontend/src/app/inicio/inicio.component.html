@@ -3,14 +3,14 @@
     <button id="bte" class="button-wrong">Errado</button>
 </div>
 <div class="container">
-    <div class="score" style="color: #4758b8;" *ngIf="!service.encerrada && questoesVistas.size > 0">
+    <div class="score" style="color: #4758b8;" *ngIf="!iniciando">
         Acertou: {{service.pontuacao}}
     </div>
-    <div class="score2" style="color: #c13a31;" *ngIf="!service.encerrada && questoesVistas.size > 0">
+    <div class="score2" style="color: #c13a31;" *ngIf="!iniciando">
         Errou: {{erradas}}
     </div>
     <div class="question" *ngIf="questao">{{questao.enunciado}}</div>
 </div>
-<div class="logo" *ngIf="questoesVistas.size == 0">
+<div class="logo" *ngIf="questoesVistas.size == 0 || service.encerrada">
     <img src="/assets/logo_siacc.png" >
 </div>
