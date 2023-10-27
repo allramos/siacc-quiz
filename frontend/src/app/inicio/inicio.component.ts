@@ -17,7 +17,6 @@ export class InicioComponent implements OnInit {
   errouAlguma = false;
   tamPartida = 10
   iniciando = true;
-  encerrada = false
   erradas = 0
 
   socket = io("http://localhost:3003")
@@ -36,7 +35,7 @@ export class InicioComponent implements OnInit {
     this.iniciar()
 
     this.socket.on('message', (data: any) => {
-      if (!this.encerrada) {
+      if (!this.service.encerrada) {
         this.respostaJogador = data
         // console.log('mensagem:', data);
 
@@ -126,7 +125,7 @@ export class InicioComponent implements OnInit {
   partidaEncerrada() {
     //Se está no ranking, cadastra o nome
     console.log('partida encerrada');
-    this.encerrada = true
+    this.service.encerrada = true
     if (this.service.pontuacao >= 7)
       this.snack('sucesso', 'Parabéns! Sua pontuação final foi ' + this.service.pontuacao + ' pontos.', 'OK', 0)
     else
@@ -148,7 +147,7 @@ export class InicioComponent implements OnInit {
     this.errouAlguma = false;
     this.questoesVistas.clear()
     this.iniciando = true
-    this.encerrada = false
+    this.service.encerrada = false
     this.erradas = 0
 
     this.questao = {

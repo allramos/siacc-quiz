@@ -8,6 +8,7 @@ export class QuestaoService {
 
   url = 'http://localhost:3000'
   pontuacao = 0;
+  encerrada = false //partida encerrada
 
   constructor(private http: HttpClient) { }
 

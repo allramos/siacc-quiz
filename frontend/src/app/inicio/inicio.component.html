@@ -1,9 +1,16 @@
-<div class="buttons" *ngIf="!encerrada">
+<div class="buttons" *ngIf="!service.encerrada && questoesVistas.size > 0">
     <button id="btc" class="button-correct">Certo</button>
     <button id="bte" class="button-wrong">Errado</button>
 </div>
 <div class="container">
-    <div class="score" style="color: #4758b8;">Acertou: {{service.pontuacao}}</div>
-    <div class="score2" style="color: #c13a31;">Errou: {{erradas}}</div>
+    <div class="score" style="color: #4758b8;" *ngIf="!service.encerrada && questoesVistas.size > 0">
+        Acertou: {{service.pontuacao}}
+    </div>
+    <div class="score2" style="color: #c13a31;" *ngIf="!service.encerrada && questoesVistas.size > 0">
+        Errou: {{erradas}}
+    </div>
     <div class="question" *ngIf="questao">{{questao.enunciado}}</div>
+</div>
+<div class="logo" *ngIf="questoesVistas.size == 0">
+    <img src="/assets/logo_siacc.png" >
 </div>
