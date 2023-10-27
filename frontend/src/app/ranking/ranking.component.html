@@ -8,7 +8,12 @@
         <mat-icon *ngIf="i ==0" style="color: rgb(184, 184, 17);">emoji_events</mat-icon>
         <mat-icon *ngIf="i ==1" style="color: rgb(158, 158, 158);">emoji_events</mat-icon>
         <mat-icon *ngIf="i ==2" style="color: rgb(114, 114, 11);">emoji_events</mat-icon>
-        {{i+1}} 
+        <span style="font-weight: bold;" *ngIf="i<3">
+          {{i+1}} 
+        </span>
+        <span *ngIf="i>=3">
+          {{i+1}} 
+        </span>
       </td>
     </ng-container>
   
