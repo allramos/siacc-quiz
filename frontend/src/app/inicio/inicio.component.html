@@ -1,8 +1,9 @@
-<div class="buttons">
+<div class="buttons" *ngIf="!encerrada">
     <button id="btc" class="button-correct">Certo</button>
     <button id="bte" class="button-wrong">Errado</button>
 </div>
 <div class="container">
-    <div class="score">Pontos: {{service.pontuacao}}</div>
+    <div class="score" style="color: #4758b8;">Acertou: {{service.pontuacao}}</div>
+    <div class="score2" style="color: #c13a31;">Errou: {{erradas}}</div>
     <div class="question" *ngIf="questao">{{questao.enunciado}}</div>
 </div>

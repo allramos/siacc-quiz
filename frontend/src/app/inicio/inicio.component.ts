@@ -15,18 +15,20 @@ export class InicioComponent implements OnInit {
   respondeu: boolean = false
   questoesVistas: Set<any> = new Set();
   errouAlguma = false;
-  tamPartida = 2
+  tamPartida = 10
   iniciando = true;
   encerrada = false
+  erradas = 0
 
   socket = io("http://localhost:3003")
-  message: string = ''
 
   constructor(
     protected service: QuestaoService,
     private _snackBar: MatSnackBar
   ) {
+
   }
+
 
   ngOnInit(): void {
 
@@ -34,53 +36,61 @@ export class InicioComponent implements OnInit {
     this.iniciar()
 
     this.socket.on('message', (data: any) => {
-      this.respostaJogador = data
-      // console.log('mensagem:', data);
+      if (!this.encerrada) {
+        this.respostaJogador = data
+        // console.log('mensagem:', data);
 
-      if (this.encerrada)
-        this.iniciar()
 
-      if (!this.respondeu && !this.iniciando) {
-        if (this.respostaJogador == this.questao.gabarito) {
-          this.acertou()
-          this.respondeu = true
-          if (this.questoesVistas.size == this.tamPartida) {
-            this.venceu()
-            // mensagem parabéns
-            if (this.errouAlguma) {
-              this.partidaEncerrada()
-              return
+
+        if (!this.respondeu && !this.iniciando) {
+          if (this.respostaJogador == this.questao.gabarito) {
+            this.acertou()
+            this.respondeu = true
+            if (this.questoesVistas.size == this.tamPartida) {
+              this.venceu()
+              // mensagem parabéns
+              if (this.errouAlguma) {
+                this.partidaEncerrada()
+                return
+              }
             }
+
+          } else {
+            console.log('errou');
+            this.errouAlguma = true;
+            this.erradas++;
+            let audio: HTMLAudioElement = new Audio('/assets/erro.mp3');
+            audio.play();
           }
-
-        } else {
-          console.log('errou');
-          this.errouAlguma = true;
-          let audio: HTMLAudioElement = new Audio('/assets/erro.mp3');
-          audio.play();
         }
-      }
 
-      if (this.questoesVistas.size >= this.tamPartida) {
-        if (this.errouAlguma) {
-          this.partidaEncerrada()
-          return
+        if (this.questoesVistas.size >= this.tamPartida) {
+          if (this.errouAlguma) {
+            this.partidaEncerrada()
+            return
+          }
         }
-      }
 
 
-      if (!this.iniciando && !this.getQuestao()) {
-        setTimeout(() => {
-          console.log('Buscando questão...');
+        if (!this.iniciando && !this.getQuestao()) {
+          setTimeout(() => {
+            console.log('Buscando questão...');
+            this.getQuestao()
+          }, 500)
+        }
+
+        if (this.iniciando) {
           this.getQuestao()
-        }, 500)
-      }
+          this.iniciando = false;
+        }
 
-      if (this.iniciando) {
-        this.getQuestao()
-        this.iniciando = false;
+      }else{
+        this._snackBar.open('Aguardando o registro da pontuação. =====>', undefined,
+        {
+          horizontalPosition: 'center',
+          verticalPosition: 'top'
+        })
       }
-
     });
   }
 
@@ -139,6 +149,7 @@ export class InicioComponent implements OnInit {
     this.questoesVistas.clear()
     this.iniciando = true
     this.encerrada = false
+    this.erradas = 0
 
     this.questao = {
       enunciado: 'Aperte um dos botões para iniciar.'
