@@ -8,20 +8,16 @@ ezButton buttonTrue(25);  // create ezButton object that attach to pin GPIO21
 ezButton buttonFalse(33);  // create ezButton object that attach to pin GPIO21
 
 
-// const char WIFI_SSID[] = "InfoCTBJ";      // CHANGE IT
-// const char WIFI_PASSWORD[] = "12345670";  // CHANGE IT
-const char WIFI_SSID[] = "FLAT HOTEL";      // CHANGE IT
-const char WIFI_PASSWORD[] = "hotel123";  // CHANGE IT
+const char WIFI_SSID[] = "InfoCTBJ";      // CHANGE IT
+const char WIFI_PASSWORD[] = "12345670";  // CHANGE IT
+
 
 // String HOST_NAME = "http://192.168.0.103:3000/questao";  // CHANGE IT
 String HOST_NAME = "http://192.168.1.17:3000/questao";  // CHANGE IT
 String PATH_NAME = "";                                   // CHANGE IT
-//String PATH_NAME   = "/products/arduino.php";      // CHANGE IT
-// String queryString = "temperature=26&humidity=70";
+
 
 HTTPClient http;
-
-
 
 void setup() {
   Serial.begin(9600);
