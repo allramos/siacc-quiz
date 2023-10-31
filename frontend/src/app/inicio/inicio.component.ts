@@ -10,7 +10,6 @@ import { QuestaoService } from '../services/questao.service';
 export class InicioComponent implements OnInit {
 
   questao!: any
-  // pontuacao: number = 0
   respostaJogador: boolean = false
   respondeu: boolean = false
   questoesVistas: Set<any> = new Set();
@@ -28,21 +27,13 @@ export class InicioComponent implements OnInit {
 
   }
 
-
   ngOnInit(): void {
-
-    // this.getQuestao()
     this.iniciar()
-
   }
 
   play(data: any): void {
-    // this.socket.on('message', (data: any) => {
     if (!this.service.encerrada) {
       this.respostaJogador = data
-      // console.log('mensagem:', data);
-
-
 
       if (!this.respondeu && !this.iniciando) {
         if (this.respostaJogador == this.questao.gabarito) {
@@ -94,7 +85,6 @@ export class InicioComponent implements OnInit {
           verticalPosition: 'top'
         })
     }
-    // });
   }
 
   getQuestao() {
@@ -107,7 +97,6 @@ export class InicioComponent implements OnInit {
       this.respondeu = false;
       this.questao = data[0]
       this.questoesVistas.add(data[0].id)
-      // console.log(this.questoesVistas);
     })
     return ehNova
   }

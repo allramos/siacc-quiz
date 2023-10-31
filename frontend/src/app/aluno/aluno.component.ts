@@ -26,7 +26,6 @@ export class AlunoComponent implements OnInit {
 
   salvar(){
     this.form.controls['pontuacao'].setValue( this.service.pontuacao)
-    // console.log(this.form.value);
     if(this.form.valid){
     this.service.salvarAluno(this.form.value).subscribe(data => {
       location.reload()
