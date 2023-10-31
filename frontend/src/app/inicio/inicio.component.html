@@ -1,12 +1,12 @@
-<div class="buttons" *ngIf="!service.encerrada && questoesVistas.size > 0">
-    <button id="btc" class="button-correct" (click)="responder(1)">Certo</button>
-    <button id="bte" class="button-wrong" (click)="responder(0)">Errado</button>
+<div class="buttons">
+    <button id="btc" class="button-correct" (click)="responder(true)">Certo</button>
+    <button id="bte" class="button-wrong" (click)="responder(false)">Errado</button>
 </div>
 <div class="container">
-    <div class="score" style="color: #4758b8;" *ngIf="!iniciando">
+    <div class="score" style="color: #4758b8;">
         Acertou: {{service.pontuacao}}
     </div>
-    <div class="score2" style="color: #c13a31;" *ngIf="!iniciando">
+    <div class="score2" style="color: #c13a31;">
         Errou: {{erradas}}
     </div>
     <div class="question" *ngIf="questao">{{questao.enunciado}}</div>

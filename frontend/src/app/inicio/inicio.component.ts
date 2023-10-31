@@ -33,17 +33,13 @@ export class InicioComponent implements OnInit {
 
     // this.getQuestao()
     this.iniciar()
-    let i = 0;
-    if (i < this.tamPartida && !this.respondeu)
-    this.getQuestao()
-      // this.play()
 
   }
 
-  play() {
+  play(data: any): void {
     // this.socket.on('message', (data: any) => {
     if (!this.service.encerrada) {
-      // this.respostaJogador = data
+      this.respostaJogador = data
       // console.log('mensagem:', data);
 
 
@@ -86,6 +82,7 @@ export class InicioComponent implements OnInit {
       }
 
       if (this.iniciando) {
+        
         this.getQuestao()
         this.iniciando = false;
       }
@@ -142,11 +139,6 @@ export class InicioComponent implements OnInit {
       enunciado: 'Fim da partida. Registre seu resultado ->.'
     }
 
-
-    // location.reload()
-
-    // verificar se a pontuação está entre as melhores do ranking
-
   }
 
   iniciar() {
@@ -165,8 +157,7 @@ export class InicioComponent implements OnInit {
   responder(res: any) {
     console.log(res);
 
-    this.respostaJogador = res ? true : false
-    this.getQuestao()
+    this.play(res)
   }
 
   public snack(
@@ -186,5 +177,16 @@ export class InicioComponent implements OnInit {
       verticalPosition: verticalPosition
     });
   }
+
+  questoes: any[] = [
+    {
+      "id": 106,
+      "enunciado": "7 x 61 = 464 ",
+      "gabarito": false,
+      "assuntoId": null,
+      "dificuldade": 0,
+      "autorId": null
+      },
+  ]
 
 }
