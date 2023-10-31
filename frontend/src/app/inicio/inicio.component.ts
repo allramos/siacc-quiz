@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { io } from "socket.io-client";
-import { QuestaoService } from '../services/questao.service';
+import { AlunoService } from '../services/aluno.service';
 @Component({
   selector: 'app-inicio',
   templateUrl: './inicio.component.html',
@@ -21,7 +21,7 @@ export class InicioComponent implements OnInit {
   socket = io("http://localhost:3003")
 
   constructor(
-    protected service: QuestaoService,
+    protected service: AlunoService,
     private _snackBar: MatSnackBar
   ) {
 
@@ -32,7 +32,7 @@ export class InicioComponent implements OnInit {
   }
 
   play(data: any): void {
-    if (!this.service.encerrada) {
+    if (!this.service) {
       this.respostaJogador = data
 
       if (!this.respondeu && !this.iniciando) {
@@ -89,21 +89,21 @@ export class InicioComponent implements OnInit {
 
   getQuestao() {
     let ehNova = true
-    this.service.getQuestao().subscribe((data: any) => {
-      if (this.questoesVistas.has(data[0].id)) {
-        ehNova = false
-        return
-      }
-      this.respondeu = false;
-      this.questao = data[0]
-      this.questoesVistas.add(data[0].id)
-    })
+    // this.service.getQuestao().subscribe((data: any) => {
+    //   if (this.questoesVistas.has(data[0].id)) {
+    //     ehNova = false
+    //     return
+    //   }
+    //   this.respondeu = false;
+    //   this.questao = data[0]
+    //   this.questoesVistas.add(data[0].id)
+    // })
     return ehNova
   }
 
   acertou() {
     console.log('acertou');
-    this.service.pontuacao++;
+    // this.service.pontuacao++;
 
     let audio: HTMLAudioElement = new Audio('/assets/sucesso.mp3');
     audio.play();
@@ -118,11 +118,11 @@ export class InicioComponent implements OnInit {
   partidaEncerrada() {
     //Se está no ranking, cadastra o nome
     console.log('partida encerrada');
-    this.service.encerrada = true
-    if (this.service.pontuacao >= 7)
-      this.snack('sucesso', 'Parabéns! Sua pontuação final foi ' + this.service.pontuacao + ' pontos.', 'OK', 0)
-    else
-      this.snack('sucesso', 'Sua pontuação final foi ' + this.service.pontuacao + ' pontos.', 'OK', 0)
+    // this.service.encerrada = true
+    // if (this.service.pontuacao >= 7)
+    //   this.snack('sucesso', 'Parabéns! Sua pontuação final foi ' + this.service.pontuacao + ' pontos.', 'OK', 0)
+    // else
+    //   this.snack('sucesso', 'Sua pontuação final foi ' + this.service.pontuacao + ' pontos.', 'OK', 0)
 
     this.questao = {
       enunciado: 'Fim da partida. Registre seu resultado ->.'
@@ -131,11 +131,11 @@ export class InicioComponent implements OnInit {
   }
 
   iniciar() {
-    this.service.pontuacao = 0;
+    // this.service.pontuacao = 0;
     this.errouAlguma = false;
     this.questoesVistas.clear()
     this.iniciando = true
-    this.service.encerrada = false
+    // this.service.encerrada = false
     this.erradas = 0
 
     this.questao = {

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { QuestaoService } from '../services/questao.service';
+import { GeralService } from '../services/geral.service';
 
 @Component({
   selector: 'app-ranking',
@@ -11,12 +11,13 @@ export class RankingComponent implements OnInit {
   displayedColumns: string[] = ['position', 'nome', 'turma', 'pontos'];
   dataSource!: any;
 
-  constructor(private service: QuestaoService){}
+  constructor(){}
 
   ngOnInit(): void {
-    this.service.getRanking().subscribe(data => {
-      this.dataSource = data
-    })
+    // this.service.getRanking().subscribe(data => {
+    //   this.dataSource = data
+    // })
   }
 
+  
 }

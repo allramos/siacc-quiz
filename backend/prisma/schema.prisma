@@ -22,7 +22,7 @@ model Aluno {
   id     Int     @id @default(autoincrement())
   nome   String
   turma  String?
-  pontuacao Int?
+
   testes Teste[]
 
   @@map("aluno")
@@ -58,6 +58,7 @@ model Teste {
   inicio             DateTime  @default(now())
   fim                DateTime?
   quantidadeQuestoes Int?      @map("qtd_questoes")
+  
   aluno              Aluno?    @relation(fields: [alunoId], references: [id])
   alunoId            Int?      @map("aluno_id")
   assunto            Assunto?  @relation(fields: [assuntoId], references: [id])

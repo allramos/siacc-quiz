@@ -5,9 +5,9 @@ import { HttpClient } from '@angular/common/http';
 @Injectable({
   providedIn: 'root'
 })
-export class QuestaoService extends GeralService{
+export class AlunoService extends GeralService{
 
   constructor(http: HttpClient) {
-    super(http, '/questao')
+    super(http, '/aluno')
    }
 }

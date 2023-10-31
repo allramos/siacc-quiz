@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { QuestaoService } from './services/questao.service';
+import { GeralService } from './services/geral.service';
 
 @Component({
   selector: 'app-root',
@@ -9,5 +9,5 @@ import { QuestaoService } from './services/questao.service';
 export class AppComponent {
   title = 'frontend';
 
-  constructor(protected service: QuestaoService){}
+  constructor(protected service: GeralService){}
 }
