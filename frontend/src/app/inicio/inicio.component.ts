@@ -33,64 +33,71 @@ export class InicioComponent implements OnInit {
 
     // this.getQuestao()
     this.iniciar()
+    let i = 0;
+    if (i < this.tamPartida && !this.respondeu)
+    this.getQuestao()
+      // this.play()
 
-    this.socket.on('message', (data: any) => {
-      if (!this.service.encerrada) {
-        this.respostaJogador = data
-        // console.log('mensagem:', data);
+  }
+
+  play() {
+    // this.socket.on('message', (data: any) => {
+    if (!this.service.encerrada) {
+      // this.respostaJogador = data
+      // console.log('mensagem:', data);
 
 
 
-        if (!this.respondeu && !this.iniciando) {
-          if (this.respostaJogador == this.questao.gabarito) {
-            this.acertou()
-            this.respondeu = true
-            if (this.questoesVistas.size == this.tamPartida) {
-              this.venceu()
-              // mensagem parabéns
-              if (this.errouAlguma) {
-                this.partidaEncerrada()
-                return
-              }
+      if (!this.respondeu && !this.iniciando) {
+        if (this.respostaJogador == this.questao.gabarito) {
+          this.acertou()
+          this.respondeu = true
+          if (this.questoesVistas.size == this.tamPartida) {
+            this.venceu()
+            // mensagem parabéns
+            if (this.errouAlguma) {
+              this.partidaEncerrada()
+              return
             }
-
-          } else {
-            console.log('errou');
-            this.errouAlguma = true;
-            this.erradas++;
-            let audio: HTMLAudioElement = new Audio('/assets/erro.mp3');
-            audio.play();
           }
+
+        } else {
+          console.log('errou');
+          this.errouAlguma = true;
+          this.erradas++;
+          let audio: HTMLAudioElement = new Audio('/assets/erro.mp3');
+          audio.play();
         }
+      }
 
-        if (this.questoesVistas.size >= this.tamPartida) {
-          if (this.errouAlguma) {
-            this.partidaEncerrada()
-            return
-          }
+      if (this.questoesVistas.size >= this.tamPartida) {
+        if (this.errouAlguma) {
+          this.partidaEncerrada()
+          return
         }
+      }
 
 
-        if (!this.iniciando && !this.getQuestao()) {
-          setTimeout(() => {
-            console.log('Buscando questão...');
-            this.getQuestao()
-          }, 500)
-        }
-
-        if (this.iniciando) {
+      if (!this.iniciando && !this.getQuestao()) {
+        setTimeout(() => {
+          console.log('Buscando questão...');
           this.getQuestao()
-          this.iniciando = false;
-        }
+        }, 500)
+      }
 
-      }else{
-        this._snackBar.open('Aguardando o registro da pontuação. =====>', undefined,
+      if (this.iniciando) {
+        this.getQuestao()
+        this.iniciando = false;
+      }
+
+    } else {
+      this._snackBar.open('Aguardando o registro da pontuação. =====>', undefined,
         {
           horizontalPosition: 'center',
           verticalPosition: 'top'
         })
-      }
-    });
+    }
+    // });
   }
 
   getQuestao() {
@@ -155,8 +162,11 @@ export class InicioComponent implements OnInit {
     }
   }
 
-  responder() {
+  responder(res: any) {
+    console.log(res);
 
+    this.respostaJogador = res ? true : false
+    this.getQuestao()
   }
 
   public snack(

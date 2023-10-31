@@ -19,11 +19,10 @@ model Professor {
 }
 
 model Aluno {
-  id        Int     @id @default(autoincrement())
-  nome      String
-  turma     String?
-  pontuacao Int?
-  testes    Teste[]
+  id     Int     @id @default(autoincrement())
+  nome   String
+  turma  String?
+  testes Teste[]
 
   @@map("aluno")
 }
@@ -38,12 +37,15 @@ model Questao {
   autor       Professor? @relation(fields: [autorId], references: [id])
   autorId     Int?       @map("autor_id")
 
+  testes Teste[]
+
   @@map("questao")
 }
 
 model Assunto {
-  id       Int       @id @default(autoincrement())
-  nome     String
+  id   Int    @id @default(autoincrement())
+  nome String
+
   questoes Questao[]
   testes   Teste[]
 
@@ -60,6 +62,8 @@ model Teste {
   assunto            Assunto?  @relation(fields: [assuntoId], references: [id])
   assuntoId          Int?      @map("assunto_id")
   pontuacao          Int?
+
+  questoes Questao[]
 
   @@map("teste")
 }

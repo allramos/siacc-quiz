@@ -1,6 +1,6 @@
 <div class="buttons" *ngIf="!service.encerrada && questoesVistas.size > 0">
-    <button id="btc" class="button-correct">Certo</button>
-    <button id="bte" class="button-wrong">Errado</button>
+    <button id="btc" class="button-correct" (click)="responder(1)">Certo</button>
+    <button id="bte" class="button-wrong" (click)="responder(0)">Errado</button>
 </div>
 <div class="container">
     <div class="score" style="color: #4758b8;" *ngIf="!iniciando">
